@@ -2,9 +2,27 @@
 {
     internal class Program
     {
-        //task2
+      
         static void Main(string[] args)
-        {
+        { 
+            //task1
+            Manager manager = new Manager("Yusif", true, 1150);
+Assistant assistant = new Assistant("Sabir", true, 23466);
+
+Console.WriteLine("Manager Salary: " + manager.Salary);
+Console.WriteLine("Assistant Salary: " + assistant.Salary);
+
+assistant.GetFeedback(manager);
+
+Console.WriteLine("New Manager Salary: " + manager.Salary);
+
+
+
+
+
+
+            
+            // task2
         //    Student student = new Student();
         //    Console.Write("Enter student's name: ");
         //    student.Name = Console.ReadLine();
@@ -20,6 +38,72 @@
         //    Console.WriteLine($"Student Grade: {student.Grade}");
         //}
     }
+        //task1
+         class Manager : Employee
+ {
+     public Manager(string name, bool isSuccessful, int salary) : base(name, isSuccessful, salary) { }
+
+     private void GetPromotion()
+     {
+         Salary += 100;
+         Console.WriteLine($"{Name} : New Salary: {Salary}");
+     }
+     public Employee PromoteEmployee(Employee employee)
+     {
+         GetPromotion();
+         return employee;
+     }
+ }
+
+ class Assistant : Employee
+ {
+     public Assistant(string name, bool isSuccessful, int salary) : base(name, isSuccessful, salary) { }
+
+     public void GetFeedback(Employee employee)
+     {
+         if (employee.IsSuccessful)
+         {
+             Console.WriteLine($"{Name} : Successful");
+             Manager manager = employee as Manager;
+             if (manager != null)
+             {
+                 manager.PromoteEmployee(employee);
+             }
+         }
+         else
+         {
+             Console.WriteLine($"{Name} : Not Successful");
+         }
+     }
+ }
+ class Employee
+ {
+     public string Name { get; set; }
+     public bool IsSuccessful { get; set; }
+     public int Salary { get; set; }
+
+     public Employee(string name, bool isSuccessful, int salary)
+     {
+         Name = name;
+         IsSuccessful = isSuccessful;
+         Salary = salary;
+     }
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
     //task2
     //class Student
     //{
